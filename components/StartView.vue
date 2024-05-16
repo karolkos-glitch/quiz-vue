@@ -1,9 +1,9 @@
 <template>
-    <main className="flex flex-col justify-center items-center my-4 gap-y-5 sm:h-screen">
+    <main className="flex flex-col justify-center items-center my-4 gap-y-5 h-screen">
         <StartViewHeader />
         <Choices label="Wybierz tryb gry" :choices="modeChoices" :selected="selectedMode" v-model="selectedMode" />
         <div className="flex flex-col justify-center items-center">
-            <Button type="button" :variant="startButttonVariant" @click="handleStart">
+            <Button type="button" :disabled="!selectedMode" :variant="startButttonVariant" @click="handleStart">
                 Start
             </Button>
         </div>

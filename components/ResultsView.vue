@@ -1,5 +1,5 @@
 <template>
-    <main class="flex flex-col justify-center items-center mx-2 gap-y-8 sm:h-screen">
+    <main class="flex flex-col justify-center items-center mx-2 gap-y-8 h-screen">
         <header class="text-center text-4xl sm:flex gap-x-8">
             <Typography as="h1" class="font-light">
                 Twój wynik

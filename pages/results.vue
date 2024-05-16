@@ -8,11 +8,12 @@
 import type { QuizResults } from '~/domain/types';
 
 const route = useRoute();
+
 const { data: quizResults, error, pending } = useAsyncData<QuizResults>('results', () => {
     const quizResultsSearchParamValue = route.query.quizResults
     const quizResultsValue = quizResultsSearchParamValue ? JSON.parse(quizResultsSearchParamValue as string) : null;
     if (quizResultsValue) return quizResultsValue;
-    throw new Error('No Quiz Results found');
+    throw createError({ statusCode: 404, statusMessage: 'No quiz results found' });
 });
 
 </script>

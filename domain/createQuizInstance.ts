@@ -12,7 +12,7 @@ const createQuestionsForInstance = async (
 ): Promise<Quiz["questions"]> => {
   const { questions: parsedQuestions } = await import("./data.json");
   let questions: Quiz["questions"] = [];
-  for (let i = 0; i < questionCount; i++) {
+  for (let i = 0; i <= questionCount; i++) {
     const questionCandidate = parsedQuestions.at(i);
     if (!questionCandidate) break;
     questions.push({

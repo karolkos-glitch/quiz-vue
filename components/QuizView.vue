@@ -1,23 +1,27 @@
 <template>
-    <main class="flex flex-col justify-center items-center my-4 sm:h-screen">
-        <header class="flex justify-between w-64">
-            <Typography as="h1" variant="secondary">
-                {{ headerValue }}
-            </Typography>
-            <Typography variant="secondary">{{ timeRemaining }} sek.</Typography>
-        </header>
-        <div class="flex flex-col gap-y-4 items-center justify-center">
+    <main class="flex flex-col justify-between items-center py-4 h-screen">
+        <div class="flex flex-col items-center border-2">
+            <Button variant="outlined" size="small" @click="navigateTo('/')">Zakończ</Button>
+            <header class="flex justify-between w-64">
+                <Typography as="h1" variant="secondary">
+                    {{ headerValue }}
+                </Typography>
+                <Typography variant="secondary">{{ timeRemaining }} sek.</Typography>
+            </header>
+        </div>
+        <div class="flex flex-col gap-y-4 items-center justify-between">
             <NuxtImg :preload="true" src="/michael-scott-handshake.webp" alt="Logo the office" width="300" />
             <Choices v-if="currentQuestion" :label="currentQuestion.content.question" v-model="selectedAnswer"
                 :choices="currentQuestion.content.answers" variant="grid" />
-            <div class="flex flex-col gap-x-4 gap-y-4">
-                <Button @click="handleAnswer" :variant="selectedAnswer ? 'solid' : 'questionable'">
-                    odpowiedź
-                </Button>
-                <Button @click="handleSkip" variant="outlined">
-                    pomiń
-                </Button>
-            </div>
+        </div>
+        <div class="flex flex-col gap-x-4 gap-y-4">
+            <Button :disabled="!selectedAnswer" :variant="selectedAnswer ? 'solid' : 'questionable'"
+                @click="handleAnswer">
+                odpowiedź
+            </Button>
+            <Button @click="handleSkip" variant="outlined">
+                pomiń
+            </Button>
         </div>
     </main>
 </template>
@@ -42,12 +46,15 @@ const endGameAndRedirectToResults = async (quizInstance: Quiz) => {
     const quizResultsSearchParamsString = searchParams.toString();
     await navigateTo(`/results/?${quizResultsSearchParamsString}`);
 };
+
 const { currentQuestion, questionIndex, actions: { onAnswer, onSkip } } = useInGameQuizInstance(props.quiz, endGameAndRedirectToResults);
+
 const handleNextQuestion = () => {
     selectedAnswer.value ? onAnswer(selectedAnswer.value) : onSkip();
     selectedAnswer.value = undefined;
 };
 const { timeRemaining, resetTimeRemaining } = useTimeRemaining(30, handleNextQuestion);
+
 const handleAnswer = () => {
     if (selectedAnswer.value) {
         onAnswer(selectedAnswer.value);
@@ -60,6 +67,7 @@ const handleSkip = () => {
     resetTimeRemaining();
 };
 const selectedAnswer = ref<QuestionAnswer | undefined>();
+
 const headerValue = computed(() => `Pytanie ${questionIndex.value + 1}`);
 
 
