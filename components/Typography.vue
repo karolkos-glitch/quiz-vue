@@ -1,3 +1,9 @@
+<template>
+    <component :is="props.as" :class="classValue">
+        <slot />
+    </component>
+</template>
+
 <script setup lang="ts">
 type TypographyProps = {
     as?: string | Component
@@ -8,7 +14,7 @@ type TypographyProps = {
 
 const props = withDefaults(defineProps<TypographyProps>(), {
     as: "span",
-    variant: "green",
+    variant: "primary",
     className: "",
     debug: false,
 })
@@ -29,9 +35,3 @@ const getClassNameValuesBySpecificVariant = (
 };
 const classValue = `${props.className} ${getClassNameValuesBySpecificVariant(props.variant)}  ${props.debug ? "border-2 border-red-900" : ""} `;
 </script>
-
-<template>
-    <component :is="props.as" :class="props.className">
-        <slot />
-    </component>
-</template>

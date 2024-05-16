@@ -1,3 +1,22 @@
+<template>
+    <div class="flex flex-col w-[75%] gap-y-4">
+        <Typography variant="secondary" class="text-3xl text-center font-light">
+            {{ props.label }}
+        </Typography>
+        <div :class="choicesWrapperClass">
+            <template v-for="choice in props.choices" :key="choice.key">
+                <Button v-if="isButtonSelected(choice)" type="button" variant="solid" @click="() => onClick(choice)">
+                    {{ choice.label }}
+                </Button>
+                <Button v-if="!isButtonSelected(choice)" @click="() => onClick(choice)" type="button"
+                    variant="questionable">
+                    {{ choice.label }}
+                </Button>
+            </template>
+        </div>
+    </div>
+</template>
+
 <script setup lang="ts" generic="T extends { label: string; key: string }">
 import { type ButtonProps } from "~/components/Button.vue";
 
@@ -40,22 +59,3 @@ const isButtonSelected = (choice: T) => {
 };
 
 </script>
-
-<template>
-    <div class="flex flex-col w-[75%] gap-y-4">
-        <Typography variant="secondary" class="text-3xl text-center font-light">
-            {{ props.label }}
-        </Typography>
-        <div :class="choicesWrapperClass">
-            <template v-for="choice in props.choices" :key="choice.key">
-                <Button v-if="isButtonSelected(choice)" type="button" variant="solid" @click="() => onClick(choice)">
-                    {{ choice.label }}
-                </Button>
-                <Button v-if="!isButtonSelected(choice)" @click="() => onClick(choice)" type="button"
-                    variant="questionable">
-                    {{ choice.label }}
-                </Button>
-            </template>
-        </div>
-    </div>
-</template>

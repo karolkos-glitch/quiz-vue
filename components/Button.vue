@@ -1,3 +1,9 @@
+<template>
+    <button :class="classValue" :disabled="props.disabled" @click="onClick">
+        <slot />
+    </button>
+</template>
+
 <script setup lang="ts">
 
 export type ButtonProps = {
@@ -40,9 +46,3 @@ const onClick = () => {
     emit("click");
 };
 </script>
-
-<template>
-    <button :class="classValue" :disabled="props.disabled" @click="onClick">
-        <slot />
-    </button>
-</template>

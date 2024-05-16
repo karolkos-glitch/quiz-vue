@@ -1,10 +1,10 @@
 <template>
     <header class="px-4 sm:hidden">
-        <Typography as="h1" class="text-3xl text-cente">
+        <Typography as="h1" class="text-3xl text-center">
             Quiz o:
         </Typography>
         <figure>
-            <img src="/the-office-logo.jpeg" alt="Logo the office" width="200" />
+            <NuxtImg src="/the-office-logo.jpeg" alt="Logo the office" width="200" />
         </figure>
     </header>
     <header class="px-4 hidden sm:flex flex-col">
@@ -16,7 +16,7 @@
                 Jak dobrze znasz serial
             </Typography>
             <figure>
-                <img src="/the-office-logo.jpeg" alt="Logo the office" width="400" />
+                <NuxtImg src="/the-office-logo.jpeg" alt="Logo the office" width="400" />
             </figure>
         </div>
     </header>
