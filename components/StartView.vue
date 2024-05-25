@@ -3,7 +3,8 @@
         <StartViewHeader />
         <Choices label="Choose game mode" :choices="modeChoices" v-model:selected="selectedMode" />
         <div className="flex flex-col justify-center items-center">
-            <Button type="button" :disabled="!selectedMode" :variant="startButttonVariant" @click="handleStart">
+            <Button type="button" :disabled="!selectedMode" :variant="startButttonVariant" @click="handleStart"
+                :tooltip="selectedMode ? null : 'Select mode!'">
                 Start
             </Button>
         </div>

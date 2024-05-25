@@ -15,7 +15,7 @@
                 :choices="currentQuestion.content.answers" variant="grid" />
         </div>
         <div class="flex flex-col gap-4 md:flex-row">
-            <Button :disabled="!selectedAnswer" :variant="selectedAnswer ? 'solid' : 'questionable'"
+            <Button :disabled="!selectedAnswer" variant="solid" :tooltip="selectedAnswer ? null : 'Select answer!'"
                 @click="handleAnswer">
                 answer
             </Button>

@@ -1,6 +1,9 @@
 <template>
     <button :class="classValue" :disabled="props.disabled" @click="onClick">
         <slot />
+        <div v-if="props.tooltip"
+            class="tooltip"><span class="text">{{ props.tooltip
+            }}</span></div>
     </button>
 </template>
 
@@ -10,12 +13,14 @@ export type ButtonProps = {
     disabled?: boolean;
     variant?: "solid" | "questionable" | "outlined";
     size?: 'small' | 'medium' | 'large';
+    tooltip?: string | null;
 };
 
 const props = withDefaults(defineProps<ButtonProps>(), {
     disabled: false,
     variant: "solid",
     size: 'medium',
+    tooltip: null,
 });
 
 const getClassNameValuesBySpecificVariant = (
@@ -44,11 +49,59 @@ const getClassNameValuesBySpecificSize = (size: ButtonProps["size"]) => {
     }
 };
 
-const classValue = computed(() => `cursor-pointer border-2 rounded-md  transition font-light ${getClassNameValuesBySpecificVariant(props.variant, props.disabled)} ${getClassNameValuesBySpecificSize(props.size)}`);
+const classValue = computed(() => `tooltip-box border-2 rounded-md  transition font-light ${getClassNameValuesBySpecificVariant(props.variant, props.disabled)} ${getClassNameValuesBySpecificSize(props.size)} `);
 
 const emit = defineEmits(["click"]);
 
 const onClick = () => {
     emit("click");
 };
+
+
+
 </script>
+
+<style scoped>
+.tooltip-box {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip-box:hover .tooltip {
+    opacity: 1;
+}
+
+.tooltip {
+    color: #ffffff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 2px;
+
+    width: 200px;
+    top: 115%;
+    left: 60%;
+    margin-left: -60px;
+
+    opacity: 0;
+    transition: opacity 1s;
+
+    position: absolute;
+    z-index: 1;
+
+    background: #bdb1d2;
+    font-size: 1rem;
+}
+
+.text::after {
+    content: " ";
+    position: absolute;
+
+    bottom: 100%;
+    left: 50%;
+    rotate: 180deg;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #bdb1d2 transparent transparent transparent;
+}
+</style>
