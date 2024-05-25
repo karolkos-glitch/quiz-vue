@@ -15,7 +15,7 @@
                 :choices="currentQuestion.content.answers" variant="grid" />
         </div>
         <div class="flex flex-col gap-4 md:flex-row">
-            <Button :disabled="!selectedAnswer" variant="solid" :tooltip="selectedAnswer ? null : 'Select answer!'"
+            <Button :disabled="!selectedAnswer" variant="solid"
                 @click="handleAnswer">
                 answer
             </Button>
@@ -65,6 +65,7 @@ const handleAnswer = () => {
 const handleSkip = () => {
     onSkip();
     resetTimeRemaining();
+    selectedAnswer.value = undefined;
 };
 const selectedAnswer = ref<QuestionAnswer | undefined>();
 
