@@ -1,6 +1,6 @@
 <template>
     <main class="flex flex-col justify-between items-center py-4 h-screen">
-        <div class="flex flex-col items-center border-2">
+        <div class="flex flex-col items-center">
             <Button variant="outlined" size="small" @click="navigateTo('/')">End</Button>
             <header class="flex justify-between w-64">
                 <Typography as="h1" variant="secondary">
