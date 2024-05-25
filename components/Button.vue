@@ -44,7 +44,7 @@ const getClassNameValuesBySpecificSize = (size: ButtonProps["size"]) => {
     }
 };
 
-const classValue = computed(() => `border-2 rounded-md  transition font-light ${getClassNameValuesBySpecificVariant(props.variant, props.disabled)} ${getClassNameValuesBySpecificSize(props.size)}`);
+const classValue = computed(() => `cursor-pointer border-2 rounded-md  transition font-light ${getClassNameValuesBySpecificVariant(props.variant, props.disabled)} ${getClassNameValuesBySpecificSize(props.size)}`);
 
 const emit = defineEmits(["click"]);
 

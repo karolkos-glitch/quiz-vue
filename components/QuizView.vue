@@ -14,7 +14,7 @@
             <Choices v-if="currentQuestion" :label="currentQuestion.content.question" v-model:selected="selectedAnswer"
                 :choices="currentQuestion.content.answers" variant="grid" />
         </div>
-        <div class="flex flex-col gap-x-4 gap-y-4">
+        <div class="flex flex-col gap-4 md:flex-row">
             <Button :disabled="!selectedAnswer" :variant="selectedAnswer ? 'solid' : 'questionable'"
                 @click="handleAnswer">
                 answer
