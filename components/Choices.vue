@@ -50,12 +50,15 @@ const getButtonVariant = <D extends { key: string }>(
 const emit = defineEmits(["choice"]);
 
 const onClick = (choice: T) => {
-    selectedModel.value = choice;
+    selected.value = choice;
 };
 
-const selectedModel = defineModel<T>();
+const selected = defineModel<T | null>('selected', {
+    default: null,
+});
+
 const isButtonSelected = (choice: T) => {
-    return selectedModel.value?.key === choice.key;
+    return selected.value?.key === choice.key;
 };
 
 </script>

@@ -1,7 +1,7 @@
 <template>
     <header class="px-4 sm:hidden">
         <Typography as="h1" class="text-3xl text-center">
-            Quiz o:
+            Quiz about 
         </Typography>
         <figure>
             <NuxtImg src="/the-office-logo.jpeg" alt="Logo the office" width="200" />
@@ -13,7 +13,7 @@
         </Typography>
         <div class="flex items-center gap-x-4">
             <Typography variant="secondary" class="text-4xl font-light">
-                Jak dobrze znasz serial
+                How good do you know
             </Typography>
             <figure>
                 <NuxtImg src="/the-office-logo.jpeg" alt="Logo the office" width="400" />

@@ -1,26 +1,26 @@
 <template>
     <main class="flex flex-col justify-between items-center py-4 h-screen">
         <div class="flex flex-col items-center border-2">
-            <Button variant="outlined" size="small" @click="navigateTo('/')">Zakończ</Button>
+            <Button variant="outlined" size="small" @click="navigateTo('/')">End</Button>
             <header class="flex justify-between w-64">
                 <Typography as="h1" variant="secondary">
                     {{ headerValue }}
                 </Typography>
-                <Typography variant="secondary">{{ timeRemaining }} sek.</Typography>
+                <Typography variant="secondary">{{ timeRemaining }} sec.</Typography>
             </header>
         </div>
         <div class="flex flex-col gap-y-4 items-center justify-between">
             <NuxtImg :preload="true" src="/michael-scott-handshake.webp" alt="Logo the office" width="300" />
-            <Choices v-if="currentQuestion" :label="currentQuestion.content.question" v-model="selectedAnswer"
+            <Choices v-if="currentQuestion" :label="currentQuestion.content.question" v-model:selected="selectedAnswer"
                 :choices="currentQuestion.content.answers" variant="grid" />
         </div>
         <div class="flex flex-col gap-x-4 gap-y-4">
             <Button :disabled="!selectedAnswer" :variant="selectedAnswer ? 'solid' : 'questionable'"
                 @click="handleAnswer">
-                odpowiedź
+                answer
             </Button>
             <Button @click="handleSkip" variant="outlined">
-                pomiń
+                skip
             </Button>
         </div>
     </main>

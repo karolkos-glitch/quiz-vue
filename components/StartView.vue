@@ -1,7 +1,7 @@
 <template>
     <main className="flex flex-col justify-center items-center my-4 gap-y-5 h-screen">
         <StartViewHeader />
-        <Choices label="Wybierz tryb gry" :choices="modeChoices" :selected="selectedMode" v-model="selectedMode" />
+        <Choices label="Choose game mode" :choices="modeChoices" v-model:selected="selectedMode" />
         <div className="flex flex-col justify-center items-center">
             <Button type="button" :disabled="!selectedMode" :variant="startButttonVariant" @click="handleStart">
                 Start
@@ -14,9 +14,9 @@
 import type { Mode } from '~/domain/types';
 
 const modeChoices = [
-    { key: "10-questions", label: "10 pytań", questionCount: 10 },
-    { key: "15-questions", label: "15 pytań", questionCount: 15 },
-    { key: "20-questions", label: "20 pytań", questionCount: 20 },
+    { key: "10-questions", label: "10 questions", questionCount: 10 },
+    { key: "15-questions", label: "15 questions", questionCount: 15 },
+    { key: "20-questions", label: "20 questions", questionCount: 20 },
 ] satisfies Mode[];
 
 
