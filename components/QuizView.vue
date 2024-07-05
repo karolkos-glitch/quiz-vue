@@ -10,7 +10,7 @@
             </header>
         </div>
         <div class="flex flex-col gap-y-4 items-center justify-between">
-            <NuxtImg :preload="true" src="/michael-scott-handshake.webp" alt="Logo the office" width="300" />
+            <NuxtImg src="/michael-scott-handshake.webp" alt="Logo the office" width="300" />
             <Choices v-if="currentQuestion" :label="currentQuestion.content.question" v-model:selected="selectedAnswer"
                 :choices="currentQuestion.content.answers" variant="grid" />
         </div>

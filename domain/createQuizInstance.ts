@@ -1,16 +1,35 @@
 import type { Mode, Quiz } from "./types";
 
-export const createQuizInstance = async (mode: Mode): Promise<Quiz> => {
+type RetrieveDataForQuizFunctionType = () => Promise<{
+  questions: {
+    id: string;
+    question: string;
+    correctAnswer: string;
+    answers: {
+      key: string;
+      label: string;
+    }[];
+  }[];
+}>;
+
+export const createQuizInstance = async (
+  mode: Mode,
+  retrieveDataForQuiz = () => import("./data.json")
+): Promise<Quiz> => {
   return {
     mode: mode,
-    questions: await createQuestionsForInstance(mode.questionCount),
+    questions: await createQuestionsForInstance(
+      mode.questionCount,
+      retrieveDataForQuiz
+    ),
   };
 };
 
 const createQuestionsForInstance = async (
-  questionCount: number
+  questionCount: number,
+  retrieveDataForQuiz: RetrieveDataForQuizFunctionType
 ): Promise<Quiz["questions"]> => {
-  const { questions: parsedQuestions } = await import("./data.json");
+  const { questions: parsedQuestions } = await retrieveDataForQuiz();
   let questions: Quiz["questions"] = [];
   for (let i = 0; i <= questionCount; i++) {
     const questionCandidate = parsedQuestions.at(i);
